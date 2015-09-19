@@ -69,7 +69,7 @@ class SignUpViewController: UIViewController {
             
             
             let reponseError: NSError?
-            let jsonData:NSDictionary!;
+            let jsonData:NSDictionary;();
 
             var response: NSURLResponse?
             var urlData: NSData?
