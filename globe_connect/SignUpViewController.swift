@@ -27,13 +27,14 @@ class SignUpViewController: UIViewController {
     
 
     @IBAction func SignUpTapped(sender: UIButton) {
-        var username:NSString = UsernameTxt.text as NSString
-        var password:NSString = PasswordTxt.text as NSString
-        var confirm_password:NSString = ConfirmPasswordTxt.text as NSString
+        let username:NSString = UsernameTxt.text! as NSString
+        let email:NSString = EmailTxt.text! as NSString
+        let password:NSString = PasswordTxt.text! as NSString
+        let confirm_password:NSString = ConfirmPasswordTxt.text! as NSString
         
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
             
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Please enter Username and Password"
             alertView.delegate = self
@@ -41,7 +42,7 @@ class SignUpViewController: UIViewController {
             alertView.show()
         } else if ( !password.isEqual(confirm_password) ) {
             
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Passwords doesn't Match"
             alertView.delegate = self
@@ -49,17 +50,17 @@ class SignUpViewController: UIViewController {
             alertView.show()
         } else {
             
-            var post:NSString = "username=\(username)&password=\(password)&c_password=\(confirm_password)"
+            let post:NSString = "username=\(username)&email=\(email)&password=\(password)&c_password=\(confirm_password)"
             
             NSLog("PostData: %@",post);
             
-            var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonsignup.php")!
+           // var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonsignup.php")!
+            let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/user.php")!
+            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             
-            var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            let postLength:NSString = String( postData.length )
             
-            var postLength:NSString = String( postData.length )
-            
-            var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             request.HTTPBody = postData
             request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
@@ -67,10 +68,17 @@ class SignUpViewController: UIViewController {
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
             
-            var reponseError: NSError?
+            let reponseError: NSError?
+            let jsonData:NSDictionary!;
+
             var response: NSURLResponse?
+            var urlData: NSData?
             
-            var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+            
+            do {
+            try urlData  = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response)
+            } catch let error as NSError
+                {error.description}
             
             if ( urlData != nil ) {
                 let res = response as! NSHTTPURLResponse!;
@@ -79,14 +87,16 @@ class SignUpViewController: UIViewController {
                 
                 if (res.statusCode >= 200 && res.statusCode < 300)
                 {
-                    var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
+                    let responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
                     
                     NSLog("Response ==> %@", responseData);
+                   
                     
-                    var error: NSError?
-                    
-                    let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
-                    
+                    do{
+                    try jsonData = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers) as! NSDictionary
+                    } catch let error as NSError
+                    {error.description}
+
                     
                     let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
                     
@@ -106,7 +116,7 @@ class SignUpViewController: UIViewController {
                         } else {
                             error_msg = "Unknown Error"
                         }
-                        var alertView:UIAlertView = UIAlertView()
+                        let alertView:UIAlertView = UIAlertView()
                         alertView.title = "Sign Up Failed!"
                         alertView.message = error_msg as String
                         alertView.delegate = self
@@ -116,7 +126,7 @@ class SignUpViewController: UIViewController {
                     }
                     
                 } else {
-                    var alertView:UIAlertView = UIAlertView()
+                    let alertView:UIAlertView = UIAlertView()
                     alertView.title = "Sign Up Failed!"
                     alertView.message = "Connection Failed"
                     alertView.delegate = self
@@ -124,7 +134,7 @@ class SignUpViewController: UIViewController {
                     alertView.show()
                 }
             }  else {
-                var alertView:UIAlertView = UIAlertView()
+                let alertView:UIAlertView = UIAlertView()
                 alertView.title = "Sign in Failed!"
                 alertView.message = "Connection Failure"
                 if let error = reponseError {

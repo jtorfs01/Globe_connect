@@ -22,9 +22,9 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
             self.performSegueWithIdentifier("goto_login", sender: self)
         } else {
            //code to show home screen when user is already loggedIn.
-            
-            //Now show login screen for test. (to be deleted)
-              self.performSegueWithIdentifier("goto_login", sender: self)
+             self.UsernameLabel.text = prefs.valueForKey("USERNAME") as? String            
+            //Show login screen for test. (to be deleted)
+            //  self.performSegueWithIdentifier("goto_login", sender: self)
         }
         
     }
@@ -34,12 +34,25 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
-        self.performSegueWithIdentifier("goto_login", sender: self);
+    
+    /*
+    // #pragma mark - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue?, sender: AnyObject?) {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
     }
+    */
+    
+    @IBAction func logoutTapped(sender: UIButton) {
+        
+        let appDomain = NSBundle.mainBundle().bundleIdentifier
+        NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)
+        
+        self.performSegueWithIdentifier("goto_login", sender: self)
 
-    @IBAction func LogoutTabbed(sender: UIButton) {
-        self.performSegueWithIdentifier("goto_login", sender: self);
     }
 }
+  
 
