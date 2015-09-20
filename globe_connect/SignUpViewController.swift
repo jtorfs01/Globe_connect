@@ -49,8 +49,9 @@ class SignUpViewController: UIViewController {
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else {
-            
-            let post:NSString = "username=\(username)&email=\(email)&password=\(password)&c_password=\(confirm_password)"
+            do {
+          
+                let post:NSString = "username=\(username)&email=\(email)&password=\(password)&c_password=\(confirm_password)"
             
             NSLog("PostData: %@",post);
             
@@ -68,17 +69,16 @@ class SignUpViewController: UIViewController {
             request.setValue("application/json", forHTTPHeaderField: "Accept")
             
             
-            let reponseError: NSError?
-            let jsonData:NSDictionary;();
-
+            var reponseError: NSError?
             var response: NSURLResponse?
             var urlData: NSData?
-            
-            
+         
             do {
-            try urlData  = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response)
-            } catch let error as NSError
-                {error.description}
+                urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse:&response)
+            } catch let error as NSError {
+                reponseError = error
+                urlData = nil
+            }
             
             if ( urlData != nil ) {
                 let res = response as! NSHTTPURLResponse!;
@@ -90,13 +90,11 @@ class SignUpViewController: UIViewController {
                     let responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
                     
                     NSLog("Response ==> %@", responseData);
-                   
                     
-                    do{
-                    try jsonData = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers) as! NSDictionary
-                    } catch let error as NSError
-                    {error.description}
-
+                    //var error: NSError?
+                    
+                    let jsonData:NSDictionary = try NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
+                    
                     
                     let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
                     
@@ -145,12 +143,21 @@ class SignUpViewController: UIViewController {
                 alertView.show()
             }
         }
-        
-        
+        catch {
+            let alertView:UIAlertView = UIAlertView()
+            alertView.title = "Sign Up Failed!"
+            alertView.message = "Server Error!"
+            alertView.delegate = self
+            alertView.addButtonWithTitle("OK")
+            alertView.show()
+        }
     }
-    @IBAction func GoToLogin(sender: UIButton) {
+}
+    
+func GoToLogin(sender: UIButton) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
+}
     /*
     // MARK: - Navigation
 
@@ -160,5 +167,3 @@ class SignUpViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
-}

@@ -80,7 +80,7 @@ class LoginViewController: UIViewController {
                     
                     NSLog("Response ==> %@", responseData);
                     
-                    let error: NSError?
+                  //let error: NSError?
                     
                     let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers )) as! NSDictionary
                     
