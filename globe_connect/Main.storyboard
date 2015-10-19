@@ -5,6 +5,25 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="F3e-Sp-zIH">
+            <objects>
+                <viewController id="WoC-ZH-mqd" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zPy-wl-ofm"/>
+                        <viewControllerLayoutGuide type="bottom" id="HN9-kP-5As"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ObD-mp-fBB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CwU-ro-6M6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="681" y="-2456"/>
+        </scene>
         <!--Login-->
         <scene sceneID="O1j-7A-il5">
             <objects>
@@ -74,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFu-iU-sXW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="32"/>
+            <point key="canvasLocation" x="1678" y="-1888"/>
         </scene>
         <!--Mapping View Controller-->
         <scene sceneID="6Zm-cS-j0j">
@@ -93,7 +112,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sI2-V9-ziW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="-657"/>
+            <point key="canvasLocation" x="865" y="-761"/>
         </scene>
         <!--Home-->
         <scene sceneID="3GU-QQ-JyJ">
@@ -107,49 +126,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Welcome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pud-rK-g6Q">
-                                <rect key="frame" x="265" y="114" width="71" height="21"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-pI-u4C">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ETb-MD-v4V">
-                                <rect key="frame" x="276" y="308" width="49" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logoutTapped:" destination="PxF-Ax-wPy" eventType="touchUpInside" id="GZg-jT-KTW"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K2V-WK-6oQ" userLabel="usernameLabel">
-                                <rect key="frame" x="213" y="178" width="175" height="33"/>
-                                <animations/>
-                                <accessibility key="accessibilityConfiguration" label="dd"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </mapView>
                         </subviews>
                         <animations/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="Pud-rK-g6Q" secondAttribute="centerX" constant="-0.5" id="Lzh-nz-Q0B"/>
-                            <constraint firstItem="K2V-WK-6oQ" firstAttribute="centerX" secondItem="ETb-MD-v4V" secondAttribute="centerX" id="Soh-pA-oOS"/>
-                            <constraint firstItem="K2V-WK-6oQ" firstAttribute="centerX" secondItem="Pud-rK-g6Q" secondAttribute="centerX" id="Yf6-NS-gle"/>
+                            <constraint firstAttribute="trailing" secondItem="Kxv-pI-u4C" secondAttribute="trailing" id="Cri-tB-ixK"/>
+                            <constraint firstItem="Kxv-pI-u4C" firstAttribute="leading" secondItem="cc6-cB-pgf" secondAttribute="leading" id="igD-Ck-Cck"/>
+                            <constraint firstItem="Kxv-pI-u4C" firstAttribute="bottom" secondItem="8Yh-h8-jIR" secondAttribute="top" id="px7-Zx-guU"/>
+                            <constraint firstItem="Kxv-pI-u4C" firstAttribute="top" secondItem="cc6-cB-pgf" secondAttribute="top" id="tzS-GX-4wN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yBx-qU-7Cs" userLabel="Home"/>
                     <connections>
-                        <outlet property="UsernameLabel" destination="K2V-WK-6oQ" id="rsc-JT-hHb"/>
+                        <outlet property="mapView" destination="Kxv-pI-u4C" id="BBf-4I-AxM"/>
                         <segue destination="ZqT-Js-iFu" kind="modal" identifier="goto_login" id="Oqa-7c-vl3"/>
-                        <segue destination="mxD-4k-JaU" kind="custom" id="E7J-NM-nuL"/>
+                        <segue destination="mxD-4k-JaU" kind="modal" identifier="goto_mapping" id="E7J-NM-nuL"/>
+                        <segue destination="WoC-ZH-mqd" kind="show" identifier="goto_annotation_info" id="LKB-88-8nu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPC-vx-IW7" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="925" y="32"/>
+            <point key="canvasLocation" x="607" y="-1606"/>
         </scene>
         <!--Sign Up-->
         <scene sceneID="sQy-NP-AcJ">
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G2U-aJ-5m0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1686" y="770"/>
+            <point key="canvasLocation" x="1678" y="-1082"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="c8a-n8-sWu">
@@ -255,7 +255,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Miw-7r-BfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="181" y="32"/>
+            <point key="canvasLocation" x="-171" y="-992"/>
         </scene>
     </scenes>
 </document>

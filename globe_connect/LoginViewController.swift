@@ -39,16 +39,16 @@ class LoginViewController: UIViewController {
             alertView.show()
         } else {
             
-            let post:NSString = "username=\(username)&password=\(password)"
+           let post:NSString = "username=\(username)&password=\(password)"
             
-            NSLog("PostData: %@",post);
+           NSLog("PostData: %@",post);
             
         //    var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonlogin2.php")!
              let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/user_login.php")!
             
             let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             
-            let postLength:NSString = String( postData.length )
+           let postLength:NSString = String( postData.length )
             
             let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
@@ -82,10 +82,12 @@ class LoginViewController: UIViewController {
                     
                   //let error: NSError?
                     
-                    let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers )) as! NSDictionary
+                    let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.AllowFragments)) as! NSDictionary
                     
-                    
-                    let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
+                  
+                    //       let jsonData:NSDictionary = try NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
+                    var success:NSInteger
+                    success = jsonData.valueForKey("success") as! NSInteger
                     
                     //[jsonData[@"success"] integerValue];
                     

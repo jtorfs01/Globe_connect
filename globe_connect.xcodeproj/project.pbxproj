@@ -15,7 +15,6 @@
 		324A56EE1B61A14B007F6DB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324A56ED1B61A14B007F6DB9 /* Main.storyboard */; };
 		3271F4931B61921F005401D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271F4921B61921F005401D9 /* LoginViewController.swift */; };
 		3271F4951B619430005401D9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271F4941B619430005401D9 /* SignUpViewController.swift */; };
-		32A63CEA1BCC5A2600A5D3DA /* MappingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32A63CE91BCC5A2600A5D3DA /* MappingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8424C6E61A1D64EE13C9F7C5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A520D3D38BE0F6F44E022913 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,6 @@
 		324A56ED1B61A14B007F6DB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3271F4921B61921F005401D9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3271F4941B619430005401D9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		32A63CE91BCC5A2600A5D3DA /* MappingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingViewController.swift; sourceTree = "<group>"; };
 		32F4C4C41BCC6757002ADB59 /* globe_connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = globe_connect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F4C4C51BCC6757002ADB59 /* globe_connectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = globe_connectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A520D3D38BE0F6F44E022913 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,7 +88,6 @@
 				320493E31B3F421F007B35E8 /* Supporting Files */,
 				3271F4921B61921F005401D9 /* LoginViewController.swift */,
 				3271F4941B619430005401D9 /* SignUpViewController.swift */,
-				32A63CE91BCC5A2600A5D3DA /* MappingViewController.swift */,
 			);
 			path = globe_connect;
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				320493E81B3F421F007B35E8 /* RootViewController.swift in Sources */,
 				3271F4951B619430005401D9 /* SignUpViewController.swift in Sources */,
 				320493E61B3F421F007B35E8 /* AppDelegate.swift in Sources */,
-				32A63CEA1BCC5A2600A5D3DA /* MappingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

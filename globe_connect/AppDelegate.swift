@@ -19,6 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
        // NSDictionary!) -> Bool {
        // println("Hello world")
     //}
+        //Ask permission for using the current device location -- Apple maps. 
+     //   locationManager = CLLocationManager()
+    //  locationManager?.requestWhenInUseAuthorization()
+        
+        
         return true
     }
 

@@ -2,8 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>MGLMapboxAccessToken</key>
-	<string>sk.eyJ1IjoiZ2xvYmUtY29ubmVjdCIsImEiOiJjaWZvZDZrMDYwMWVsdGNseDBjbDRkN250In0.IYBvTB1L7rk4SLERJfQePg</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This information is used to find things to do close to you. </string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -37,7 +37,7 @@
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
-		<string>armv7</string>
+		<string></string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
