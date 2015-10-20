@@ -8,7 +8,7 @@
         <!--Anotation View Controller-->
         <scene sceneID="F3e-Sp-zIH">
             <objects>
-                <viewController storyboardIdentifier="AnotationView" id="WoC-ZH-mqd" customClass="AnotationViewController" customModule="globe_connect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnotationView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WoC-ZH-mqd" customClass="AnotationViewController" customModule="globe_connect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zPy-wl-ofm"/>
                         <viewControllerLayoutGuide type="bottom" id="HN9-kP-5As"/>
@@ -129,6 +129,9 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Kxv-pI-u4C">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
+                                <connections>
+                                    <outlet property="delegate" destination="PxF-Ax-wPy" id="vsw-Ia-N9e"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <animations/>

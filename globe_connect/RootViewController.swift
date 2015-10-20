@@ -26,10 +26,14 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         checkLocationAuthorizationStatus()
     }
     
-    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
-        if control == view.rightCalloutAccessoryView{
+    func mapView(mapView: MKMapView!, annotationView: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+    
+        
             //Perform a segue here to navigate to another viewcontroller
             // On tapping the disclosure button you will get here
+            if control == annotationView.rightCalloutAccessoryView {
+                self.performSegueWithIdentifier("goto_annotation_info", sender: self)
+            
             
         }
     }
@@ -44,11 +48,60 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
     
+        let title = annotation.title
+        
+        
+        var id = Int();
+        do {
+      //      let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!)
+            
+            let post:NSString = "name=\(title)"
+            
+            NSLog("PostData: %@",post);
+       
+            let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!
+            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            
+            let postLength:NSString = String( postData.length )
+            
+            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            request.HTTPBody = postData
+            request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            
+            var reponseError: NSError?
+            var response: NSURLResponse?
+            var urlData: NSData?
+            
+            do {
+                urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse:&response)
+            } catch let error as NSError {
+                reponseError = error
+                urlData = nil
+            }
+            
+            let jsonData = try NSJSONSerialization.JSONObjectWithData(urlData!, options: NSJSONReadingOptions.MutableContainers)
+            
+            if (!(jsonData["ACTIVITY_ID"] == nil)){
+                id = jsonData["ACTIVITY_ID"] as! Int;
+            }
+            
+        } catch let error as NSError {
+            
+            print(error)
+            
+        }
+    
+    
         if annotation is MKUserLocation {
             //return nil
             return nil
         }
         
+        
+    
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
@@ -57,9 +110,12 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.animatesDrop = true
+            pinView!.tag = id;
+            
         }
         
         let button = UIButton(type: UIButtonType.DetailDisclosure) as UIButton // button with info sign in it
+       // var titleLabel: UILabel?
         
         pinView?.rightCalloutAccessoryView = button
         
@@ -98,7 +154,7 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
     var annotations:Array = [Activity]()
     
         do {
-            let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!)
+            let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activities.php")!)
             
             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
             
@@ -117,11 +173,12 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
                 
                 mapView.setRegion(theRegion, animated: true)
                 
-                let anotation = Activity(latitude: latitudeItem, longitude: longtitudeItem)
-                anotation.title = name
-                anotation.subtitle = description
+                let annotation = Activity(latitude: latitudeItem, longitude: longtitudeItem)
+                annotation.title = name
+                annotation.subtitle = description
+                              
+                annotations.append(annotation)
                 
-                annotations.append(anotation)
                 
                 
             }  } catch let error as NSError {
