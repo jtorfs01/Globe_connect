@@ -9,7 +9,6 @@
 import UIKit
 import MapKit
 
-
 class RootViewController: UIViewController, UIPageViewControllerDelegate {
     
     // MARK: - location manager to authorize user location for Maps app
@@ -22,59 +21,120 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         }
     }
     
-
-    
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         checkLocationAuthorizationStatus()
     }
     
-    func addNewAnotation(gestureRecognizer:UIGestureRecognizer) {
-        var touchPoint = gestureRecognizer.locationInView(self.mapView)
-        var newCoord:CLLocationCoordinate2D = mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
-        
-        var newAnotation = MKPointAnnotation()
-        newAnotation.coordinate = newCoord
-        newAnotation.title = "New Location"
-        newAnotation.subtitle = "New Subtitle"
-        mapView.addAnnotation(newAnotation)
-        
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
+        if control == view.rightCalloutAccessoryView{
+            //Perform a segue here to navigate to another viewcontroller
+            // On tapping the disclosure button you will get here
+            
+        }
     }
-  
-    func parseJson(data: NSData){
-    do {
-    let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!)
+
     
-    let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+/*    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "viewDetail"){
+            var theDestination: AnotationViewController = segue.destinationViewController as! AnotationViewController
+            theDestination.getName = (sender as! MKAnnotationView).annotation!.title!
+        }
+    }*/
     
-    for anItem in jsonData as! [Dictionary<String, AnyObject>] {
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    
+        if annotation is MKUserLocation {
+            //return nil
+            return nil
+        }
         
-    let longtitudeItem = (anItem["LONGTITUDE"] as! NSString).doubleValue;
-    let latitudeItem = (anItem["LATITUDE"] as! NSString).doubleValue;
-    let name = anItem["NAME"] as! String;
-    let description = anItem["DESCRIPTION"] as! String;
-    
-    // do something with the data retrieved:
-    let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.01 , 0.01)
-    // let location:CLLocationCoordinate2D = mapView.userLocation.coordinate;
-    let location:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitudeItem , longitude:longtitudeItem)
-    let theRegion:MKCoordinateRegion = MKCoordinateRegionMake(location, theSpan)
-    
-    mapView.setRegion(theRegion, animated: true)
-    
-    let anotation = MKPointAnnotation()
-    anotation.coordinate = location
-    anotation.title = name
-    anotation.subtitle = description
-    mapView.addAnnotation(anotation)
-    
-    }  } catch let error as NSError {
-    
-    print(error)
-    
+        let reuseId = "pin"
+        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+        
+        if pinView == nil {
+            //println("Pinview was nil")
+            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView!.canShowCallout = true
+            pinView!.animatesDrop = true
+        }
+        
+        let button = UIButton(type: UIButtonType.DetailDisclosure) as UIButton // button with info sign in it
+        
+        pinView?.rightCalloutAccessoryView = button
+        
+        
+        return pinView
     }
+    
+    
+    
+   /* func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "Activity"
         
-}
+        if annotation.isKindOfClass(Activity.self) {
+            if let annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) {
+                annotationView.annotation = annotation
+                return annotationView
+            } else {
+                let annotationView = MKPinAnnotationView(annotation:annotation, reuseIdentifier:identifier)
+                annotationView.enabled = true
+                annotationView.canShowCallout = true
+                
+                let btn = UIButton(type: .DetailDisclosure)
+                annotationView.rightCalloutAccessoryView = btn
+                return annotationView
+            }
+        }
+        
+        return nil
+    }*/
+    
+
+    
+    //MARK:- Annotations
+    
+    func getMapAnnotations() -> [Activity] {
+    var annotations:Array = [Activity]()
+    
+        do {
+            let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!)
+            
+            let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+            
+            for anItem in jsonData as! [Dictionary<String, AnyObject>] {
+                
+                let longtitudeItem = (anItem["LONGTITUDE"] as! NSString).doubleValue;
+                let latitudeItem = (anItem["LATITUDE"] as! NSString).doubleValue;
+                let name = anItem["NAME"] as! String;
+                let description = anItem["DESCRIPTION"] as! String;
+                
+                // do something with the data retrieved:
+                let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(0.01 , 0.01)
+                // let location:CLLocationCoordinate2D = mapView.userLocation.coordinate;
+                let location:CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: latitudeItem , longitude:longtitudeItem)
+                let theRegion:MKCoordinateRegion = MKCoordinateRegionMake(location, theSpan)
+                
+                mapView.setRegion(theRegion, animated: true)
+                
+                let anotation = Activity(latitude: latitudeItem, longitude: longtitudeItem)
+                anotation.title = name
+                anotation.subtitle = description
+                
+                annotations.append(anotation)
+                
+                
+            }  } catch let error as NSError {
+                
+                print(error)
+                
+        }
+        return annotations
+
+
+    }
+
+
 
 
 
@@ -83,6 +143,7 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
    
     override func viewDidLoad() {
         super.viewDidAppear(true)
+        
         // Do any additional setup after loading the view, typically from a nib.
         // Configure the page view controller and add it as a child view controller.
         
@@ -128,7 +189,13 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
                     NSLog("Response ==> %@", responseData);
                     
                     //let error: NSError?
-                    parseJson();
+                   //parseJson();
+                    
+                    let annotations = getMapAnnotations()
+                    // Add mappoints to Map
+                    mapView.addAnnotations(annotations)
+                    
+                    
                     
                   //  let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, //options:NSJSONReadingOptions.AllowFragments)) as! NSDictionary
                     

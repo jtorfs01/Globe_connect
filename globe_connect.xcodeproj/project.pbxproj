@@ -15,6 +15,8 @@
 		324A56EE1B61A14B007F6DB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324A56ED1B61A14B007F6DB9 /* Main.storyboard */; };
 		3271F4931B61921F005401D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271F4921B61921F005401D9 /* LoginViewController.swift */; };
 		3271F4951B619430005401D9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271F4941B619430005401D9 /* SignUpViewController.swift */; };
+		32C964261BD59C7100B761C8 /* AnotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C964251BD59C7100B761C8 /* AnotationViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		32C9642C1BD5AFB900B761C8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9642B1BD5AFB900B761C8 /* Activity.swift */; settings = {ASSET_TAGS = (); }; };
 		8424C6E61A1D64EE13C9F7C5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A520D3D38BE0F6F44E022913 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,8 @@
 		324A56ED1B61A14B007F6DB9 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		3271F4921B61921F005401D9 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3271F4941B619430005401D9 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		32C964251BD59C7100B761C8 /* AnotationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnotationViewController.swift; sourceTree = "<group>"; };
+		32C9642B1BD5AFB900B761C8 /* Activity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		32F4C4C41BCC6757002ADB59 /* globe_connect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = globe_connect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		32F4C4C51BCC6757002ADB59 /* globe_connectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = globe_connectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A520D3D38BE0F6F44E022913 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +92,8 @@
 				320493E31B3F421F007B35E8 /* Supporting Files */,
 				3271F4921B61921F005401D9 /* LoginViewController.swift */,
 				3271F4941B619430005401D9 /* SignUpViewController.swift */,
+				32C964251BD59C7100B761C8 /* AnotationViewController.swift */,
+				32C9642B1BD5AFB900B761C8 /* Activity.swift */,
 			);
 			path = globe_connect;
 			sourceTree = "<group>";
@@ -287,8 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32C9642C1BD5AFB900B761C8 /* Activity.swift in Sources */,
 				3271F4931B61921F005401D9 /* LoginViewController.swift in Sources */,
 				320493E81B3F421F007B35E8 /* RootViewController.swift in Sources */,
+				32C964261BD59C7100B761C8 /* AnotationViewController.swift in Sources */,
 				3271F4951B619430005401D9 /* SignUpViewController.swift in Sources */,
 				320493E61B3F421F007B35E8 /* AppDelegate.swift in Sources */,
 			);
