@@ -31,6 +31,9 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
         //Perform a segue here to navigate to another viewcontroller
             // On tapping the disclosure button you will get here
             if control == annotationView.rightCalloutAccessoryView {
+                let title = annotationView.annotation?.title;
+                if let titlePin = title {
+                    NSUserDefaults.standardUserDefaults().setObject(titlePin, forKey: "Title")}
                 self.performSegueWithIdentifier("goto_annotation_info", sender: self)
         }
     }
@@ -49,11 +52,12 @@ func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -
       //let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!)
             
             let post:NSString = "name=\(title)"
-        
+         
             NSLog("PostData: %@",post);
        
             let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!
-            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            
+            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!;
             
             let postLength:NSString = String( postData.length )
             
@@ -62,7 +66,7 @@ func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -
             request.HTTPBody = postData
             request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")
             
             var reponseError: NSError?
             var response: NSURLResponse?
@@ -109,6 +113,7 @@ func getMapAnnotations() -> [Activity] {
     var annotations:Array = [Activity]()
     
         do {
+           
             let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activities.php")!)
             
             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)

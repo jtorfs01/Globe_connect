@@ -13,7 +13,9 @@ class AnotationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Test");
+        let spotTitle = NSUserDefaults.standardUserDefaults().objectForKey("Title") as! String
+        
+        print(spotTitle);
        
         // Do any additional setup after loading the view.
     }
@@ -26,6 +28,12 @@ class AnotationViewController: UIViewController {
     func getName()
     {
     
+    }
+    func back(sender: UIBarButtonItem) {
+        // Perform your custom actions
+       // NSUserDefaults.standardUserDefaults().removeObjectForKey("Title");
+        // Go back to the previous ViewController
+  //    self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 
