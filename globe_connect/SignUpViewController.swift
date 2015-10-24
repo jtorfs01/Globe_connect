@@ -55,9 +55,10 @@ class SignUpViewController: UIViewController {
             
             NSLog("PostData: %@",post);
             
-           // var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonsignup.php")!
-            let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/user.php")!
-            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+           // let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/user.php")!
+            let url:NSURL = NSURL(string: "https://php-globeconnect.rhcloud.com/user.php")!
+            
+            let postData:NSData = post.dataUsingEncoding(NSUTF8StringEncoding)!
             
             let postLength:NSString = String( postData.length )
             

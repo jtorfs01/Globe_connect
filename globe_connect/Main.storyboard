@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QMU-52-dGh">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QMU-52-dGh">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Anotation View Controller-->
@@ -62,7 +62,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="g4v-JA-Anf" kind="modal" identifier="goto_signup" id="TLg-sO-Y7i"/>
+                                    <action selector="GoToSignUp:" destination="ZqT-Js-iFu" eventType="touchUpInside" id="BVU-uL-EOM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SeI-rZ-Cz6">
@@ -89,6 +89,7 @@
                     <connections>
                         <outlet property="PasswordTxt" destination="0tf-aN-2Jv" id="b5L-UC-zVk"/>
                         <outlet property="UsernameTxt" destination="0mP-jR-ZGP" id="mav-BA-RmF"/>
+                        <segue destination="g4v-JA-Anf" kind="presentation" identifier="goto_signup" id="DqS-ex-024"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFu-iU-sXW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -145,9 +146,9 @@
                     <navigationItem key="navigationItem" id="yBx-qU-7Cs" userLabel="Home"/>
                     <connections>
                         <outlet property="mapView" destination="Kxv-pI-u4C" id="BBf-4I-AxM"/>
-                        <segue destination="ZqT-Js-iFu" kind="modal" identifier="goto_login" id="Oqa-7c-vl3"/>
-                        <segue destination="mxD-4k-JaU" kind="modal" identifier="goto_mapping" id="E7J-NM-nuL"/>
                         <segue destination="WoC-ZH-mqd" kind="show" identifier="goto_annotation_info" id="LKB-88-8nu"/>
+                        <segue destination="ZqT-Js-iFu" kind="presentation" identifier="goto_login" id="ULi-rR-meO"/>
+                        <segue destination="mxD-4k-JaU" kind="presentation" identifier="goto_mapping" id="hqx-eP-WMJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPC-vx-IW7" sceneMemberID="firstResponder"/>
@@ -182,16 +183,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lb-Af-tbP">
-                                <rect key="frame" x="16" y="393" width="568" height="30"/>
-                                <animations/>
-                                <state key="normal" title="Already have an acount? Login now!">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="GoToLogin:" destination="g4v-JA-Anf" eventType="touchUpInside" id="sh5-dO-SsQ"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Sign up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCK-kw-WLu">
                                 <rect key="frame" x="271" y="72" width="59" height="21"/>
                                 <animations/>
@@ -217,6 +208,16 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lb-Af-tbP">
+                                <rect key="frame" x="16" y="393" width="568" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Already have an acount? Login now!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="GoToLogin:" destination="g4v-JA-Anf" eventType="touchUpInside" id="sh5-dO-SsQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

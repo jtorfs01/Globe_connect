@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBAction func GoToSignUp(sender: UIButton) {
+          self.performSegueWithIdentifier("goto_signup", sender: self)
+    }
     
     
     @IBAction func SignInTapped(sender: UIButton) {
@@ -43,11 +46,12 @@ class LoginViewController: UIViewController {
             
            NSLog("PostData: %@",post);
             
-        //    var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonlogin2.php")!
-             let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/user_login.php")!
+        //var url:NSURL = NSURL(string: "https://dipinkrishna.com/jsonlogin2.php")!
+        //let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/user_login.php")!
             
-            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+           let url:NSURL = NSURL(string: "https://php-globeconnect.rhcloud.com/user_login.php")!
             
+           let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
            let postLength:NSString = String( postData.length )
             
             let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)

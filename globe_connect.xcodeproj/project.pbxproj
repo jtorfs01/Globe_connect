@@ -11,12 +11,12 @@
 		320493E81B3F421F007B35E8 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320493E71B3F421F007B35E8 /* RootViewController.swift */; };
 		320493F11B3F421F007B35E8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 320493F01B3F421F007B35E8 /* Images.xcassets */; };
 		320494001B3F421F007B35E8 /* globe_connectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320493FF1B3F421F007B35E8 /* globe_connectTests.swift */; };
-		3242F8EB1BCC660200CF69CA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3242F8EA1BCC660200CF69CA /* Settings.bundle */; settings = {ASSET_TAGS = (); }; };
+		3242F8EB1BCC660200CF69CA /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3242F8EA1BCC660200CF69CA /* Settings.bundle */; };
 		324A56EE1B61A14B007F6DB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 324A56ED1B61A14B007F6DB9 /* Main.storyboard */; };
 		3271F4931B61921F005401D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271F4921B61921F005401D9 /* LoginViewController.swift */; };
 		3271F4951B619430005401D9 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3271F4941B619430005401D9 /* SignUpViewController.swift */; };
-		32C964261BD59C7100B761C8 /* AnotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C964251BD59C7100B761C8 /* AnotationViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		32C9642C1BD5AFB900B761C8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9642B1BD5AFB900B761C8 /* Activity.swift */; settings = {ASSET_TAGS = (); }; };
+		32C964261BD59C7100B761C8 /* AnotationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C964251BD59C7100B761C8 /* AnotationViewController.swift */; };
+		32C9642C1BD5AFB900B761C8 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C9642B1BD5AFB900B761C8 /* Activity.swift */; };
 		8424C6E61A1D64EE13C9F7C5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A520D3D38BE0F6F44E022913 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -194,6 +194,7 @@
 				TargetAttributes = {
 					320493DF1B3F421F007B35E8 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = ZKFVP47JQJ;
 					};
 					320493F81B3F421F007B35E8 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -341,6 +342,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -358,7 +360,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -386,6 +388,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -396,7 +399,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -408,11 +411,14 @@
 			baseConfigurationReference = DFA67DC8B23A908164524B5E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = globe_connect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Traveller-inc...$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -422,11 +428,14 @@
 			baseConfigurationReference = F64E0F9AA5C0BD4FCEF19CB4 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = globe_connect/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Traveller-inc...$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

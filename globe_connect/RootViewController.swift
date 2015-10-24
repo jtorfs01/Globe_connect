@@ -55,7 +55,8 @@ func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -
          
             NSLog("PostData: %@",post);
        
-            let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!
+          //let url:NSURL = NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!
+            let url:NSURL = NSURL(string: "https://php-globeconnect.rhcloud.com/get_activity.php")!
             
             let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!;
             
@@ -114,10 +115,10 @@ func getMapAnnotations() -> [Activity] {
     
         do {
            
-            let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activities.php")!)
-            
+            //let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activities.php")!)
+            let data = NSData(contentsOfURL: NSURL(string: "https://php-globeconnect.rhcloud.com/get_activities.php")!)
             let jsonData = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-            
+           
             for anItem in jsonData as! [Dictionary<String, AnyObject>] {
                 
                 let longtitudeItem = (anItem["LONGTITUDE"] as! NSString).doubleValue;
