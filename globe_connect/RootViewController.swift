@@ -33,23 +33,29 @@ class RootViewController: UIViewController, UIPageViewControllerDelegate {
             if control == annotationView.rightCalloutAccessoryView {
                 let title = annotationView.annotation?.title;
                 if let titlePin = title {
-                    NSUserDefaults.standardUserDefaults().setObject(titlePin, forKey: "Title")}
+                NSUserDefaults.standardUserDefaults().setObject(titlePin, forKey: "Title")}
                 self.performSegueWithIdentifier("goto_annotation_info", sender: self)
         }
     }
 
     
-func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+func mapView(mapView: MKMapView!, let viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
     
     let title:NSString = annotation.title!!;
     var activityIdPin = NSInteger();
     let reuseId = "pin"
     var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
     
-   
+    //if (annotation == mapView.userLocation) {return nil}
+    
+    if annotation is MKUserLocation {
+        //return nil
+        return nil
+    }else {
     
         do {
       //let data = NSData(contentsOfURL: NSURL(string: "http://localhost/~dentorfs_/get_activity.php")!)
+            
             
             let post:NSString = "name=\(title)"
          
@@ -85,11 +91,7 @@ func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -
             for anItem in jsonData as! [Dictionary<String, AnyObject>] {
                 activityIdPin = (anItem["ACTIVITY_ID"] as? NSInteger)!;
                 
-            if annotation is MKUserLocation {
-                    //return nil
-                    return nil
-                }
-                if pinView == nil {
+            if pinView == nil {
                     //println("Pinview was nil")
                     pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
                     pinView!.canShowCallout = true
@@ -102,10 +104,10 @@ func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -
             }
         
             //      id = (jsonData["ACTIVITY_ID"] as? Int)!;
-        }   catch let error as NSError {
-            print(error)}
-                return pinView
-
+        }   catch let error as NSError
+                    {print(error)}
+        return pinView
+        }
     }
 
 
@@ -168,12 +170,13 @@ func getMapAnnotations() -> [Activity] {
                     // Add mappoints to Map
                     mapView.addAnnotations(annotations)
                     
+            
+            //Add annotation with long press (can be used to add activities, needs to be tested. 
+                 //   let longPress = UILongPressGestureRecognizer(target: self, action: "addNewAnotation:")
+                //  longPress.minimumPressDuration = 1.0
+                //    mapView.addGestureRecognizer(longPress)
                     
-                    let longPress = UILongPressGestureRecognizer(target: self, action: "addNewAnotation:")
-                    longPress.minimumPressDuration = 1.0
-                    mapView.addGestureRecognizer(longPress)
-                    
-                    mapView.showsUserLocation = true
+                    mapView.showsUserLocation = false
  
                     //var success:NSInteger
                               }
