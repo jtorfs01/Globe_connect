@@ -11,7 +11,7 @@ import UIKit
 
 extension UILabel{
     
-    func requiredHeight() -> CGFloat{
+    func requiredHeight(text:String) -> CGFloat{
         
         let label:UILabel = UILabel(frame: CGRectMake(0, 0, self.frame.width, CGFloat.max))
         label.numberOfLines = 0
@@ -23,4 +23,5 @@ extension UILabel{
         
         return label.frame.height
     }
+    
 }

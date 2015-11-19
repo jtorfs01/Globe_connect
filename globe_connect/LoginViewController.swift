@@ -88,8 +88,6 @@ class LoginViewController: UIViewController {
                     
                     let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.AllowFragments)) as! NSDictionary
                     
-                  
-                    //       let jsonData:NSDictionary = try NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers ) as! NSDictionary
                     var success:NSInteger
                     success = jsonData.valueForKey("success") as! NSInteger
                     
